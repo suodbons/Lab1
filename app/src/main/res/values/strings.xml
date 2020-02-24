@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Lab1</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="text_hint">Enter text</string>
+    <string name="text_input"></string>
+    <string name="text_choose">Choose font:</string>
+    <string name="serif">Serif</string>
+    <string name="sans_serif">Sans-serif</string>
+    <string name="sans_serif_thin">Sans-serif-thin</string>
+    <string name="casual">Casual</string>
+    <string name="cursive">Cursive</string>
+</resources>
