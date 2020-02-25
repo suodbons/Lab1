@@ -4,6 +4,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,19 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
-        button_ok.setOnClickListener{
-            val id = fonts.checkedRadioButtonId
-            if(id != -1){
-                val radio:RadioButton = findViewById(id)
-                textView.typeface = Typeface.create(radio.text.toString().toLowerCase(Locale.ROOT), Typeface.NORMAL)
-                textView.text = editText.text
-                editText.clearFocus()
-            }
-            else{
-                Toast.makeText(this, "Choose font", Toast.LENGTH_SHORT).show()
-            }
-        }
+
         editText.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -45,12 +34,35 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-        button_cancel.setOnClickListener{
-            editText.setText("")
-            editText.clearFocus()
-            textView.text = ""
-            textView.typeface = Typeface.MONOSPACE
-            fonts.clearCheck()
+    }
+    fun acceptOk(view: View){
+        val id = fonts.checkedRadioButtonId
+        if(id != -1){
+            if(editText.text.any()) {
+                val radio:RadioButton = findViewById(id)
+                val newTypeface = Typeface.create(radio.text.toString().toLowerCase(Locale.ROOT), Typeface.NORMAL)
+                if (textView.typeface != newTypeface){
+                    textView.typeface = newTypeface
+                    textView.text = editText.text
+                    editText.clearFocus()
+                }
+                else{
+                    Toast.makeText(this, "Nothing changed", Toast.LENGTH_SHORT).show()
+                }
+            }
+            else{
+                Toast.makeText(this, "Enter text", Toast.LENGTH_SHORT).show()
+            }
         }
+        else{
+            Toast.makeText(this, "Choose font", Toast.LENGTH_SHORT).show()
+        }
+    }
+    fun cancel(view: View){
+        editText.setText("")
+        editText.clearFocus()
+        textView.text = ""
+        textView.typeface = Typeface.MONOSPACE
+        fonts.clearCheck()
     }
 }
