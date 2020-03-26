@@ -9,6 +9,8 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_input.*
+import kotlinx.android.synthetic.main.fragment_output.*
 import java.util.*
 
 
@@ -17,8 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        editText.addTextChangedListener(object : TextWatcher{
+        /*editText.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -33,10 +34,16 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        })
+        })*/
     }
     fun acceptOk(view: View){
-        val id = fonts.checkedRadioButtonId
+        val firstFragment = FragmentOutput()
+        val manager = supportFragmentManager
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.fragment_default_picture,firstFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+        /*val id = fonts.checkedRadioButtonId
         if(id != -1){
             if(editText.text.any()) {
                 val radio:RadioButton = findViewById(id)
@@ -56,13 +63,19 @@ class MainActivity : AppCompatActivity() {
         }
         else{
             Toast.makeText(this, "Choose font", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
     fun cancel(view: View){
-        editText.setText("")
+        val firstFragment = FragmentDefaultPicture()
+        val manager = supportFragmentManager
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.fragment_default_picture, firstFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+        /*editText.setText("")
         editText.clearFocus()
         textView.text = ""
         textView.typeface = Typeface.MONOSPACE
-        fonts.clearCheck()
+        fonts.clearCheck()*/
     }
 }

@@ -10,4 +10,8 @@
     <string name="sans_serif_thin">Sans-serif-thin</string>
     <string name="casual">Casual</string>
     <string name="cursive">Cursive</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="beautiful_gif">beautiful_gif</string>
 </resources>

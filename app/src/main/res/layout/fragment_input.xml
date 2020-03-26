@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".FragmentInput">
+
+    <TextView
+        android:id="@+id/textTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="monospace"
+        android:text="@string/text_choose"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/fonts"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/fonts"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/text_choose" />
+
+    <RadioGroup
+        android:id="@+id/fonts"
+        android:layout_width="206dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTask">
+
+        <RadioButton
+            android:id="@+id/serif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+
+            android:text="@string/serif"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/sans_serif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+
+            android:text="@string/sans_serif" />
+
+        <RadioButton
+            android:id="@+id/sans_serif_thin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+
+            android:text="@string/sans_serif_thin" />
+
+        <RadioButton
+            android:id="@+id/casual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/casual"
+
+            android:typeface="monospace" />
+
+        <RadioButton
+            android:id="@+id/cursive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cursive"
+
+            android:typeface="monospace" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="@string/text_hint"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fonts" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
