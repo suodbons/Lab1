@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+    android:id="@+id/content_id"
     tools:context=".MainActivity">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragment_input"
         android:name="com.example.lab1.FragmentInput"
         android:layout_width="408dp"
@@ -20,7 +21,7 @@
         app:layout_constraintVertical_bias="0.0"
         tools:layout="@layout/fragment_input" />
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragment_default_picture"
         android:name="com.example.lab1.FragmentDefaultPicture"
         android:layout_width="406dp"
