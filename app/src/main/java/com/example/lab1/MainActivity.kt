@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.fragment_input.*
 
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity(), TextUpdater{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,22 +18,22 @@ class MainActivity : AppCompatActivity(){
             supportFragmentManager.beginTransaction().replace(R.id.fragment_default_picture, FragmentDefaultPicture()).commit()
         }
     }
+    override fun passText(input_text: String) {
+        var outputFragment =  supportFragmentManager.fragments[1]
+        outputFragment.arguments?.putString("input_txt", input_text)
+        supportFragmentManager.beginTransaction().detach(outputFragment).attach(outputFragment).commit()
+    }
+
     fun acceptOk(view: View){
         val id = fonts.checkedRadioButtonId
         if(id != -1){
             if(editText.text.any()) {
                 val radio:RadioButton = findViewById(id)
                 var outputFragment = supportFragmentManager.fragments[1]
-
                 if (outputFragment is FragmentOutput){
-                    if(outputFragment.arguments?.getString("input_radio_id") != radio.text.toString()
-                        || outputFragment.arguments?.getString("input_txt") != editText.text.toString()){
-
+                    if(outputFragment.arguments?.getString("input_radio_id") != radio.text.toString()){
                         if(outputFragment.arguments?.getString("input_radio_id") != radio.text.toString()){
                             outputFragment.arguments?.putString("input_radio_id", radio.text.toString())
-                        }
-                        if(outputFragment.arguments?.getString("input_txt") != editText.text.toString()){
-                            outputFragment.arguments?.putString("input_txt", editText.text.toString())
                         }
                         supportFragmentManager.beginTransaction().detach(outputFragment).attach(outputFragment).commit()
                     }
@@ -44,6 +44,9 @@ class MainActivity : AppCompatActivity(){
                 else{
                     outputFragment = FragmentOutput.newInstance(editText.text.toString(), radio.text.toString())
                     supportFragmentManager.beginTransaction().replace(R.id.fragment_default_picture, outputFragment).commit()
+                    supportFragmentManager.fragments[0].arguments?.apply {
+                        putBoolean("update", true)
+                    }
                     editText.clearFocus()
                 }
             }
