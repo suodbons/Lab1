@@ -1,68 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    android:id="@+id/content_id"
     tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/fragment_input"
         android:name="com.example.lab1.FragmentInput"
         android:layout_width="408dp"
-        android:layout_height="308dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout="@layout/fragment_input" />
+        android:layout_height="736dp"
+        tools:layout="@layout/fragment_input"
+        tools:ignore="UselessParent">
+    </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_default_picture"
-        android:name="com.example.lab1.FragmentDefaultPicture"
-        android:layout_width="406dp"
-        android:layout_height="277dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_cancel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_input"
-        app:layout_constraintVertical_bias="0.256"
-        tools:layout="@layout/fragment_default_picture" />
-
-    <Button
-        android:id="@+id/button_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/colorButton"
-        android:fontFamily="monospace"
-        android:text="@string/cancel"
-        android:onClick="cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_ok"
-        app:layout_constraintVertical_bias="0.905" />
-
-    <Button
-        android:id="@+id/button_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/colorButton"
-        android:fontFamily="monospace"
-        android:text="@string/ok"
-        android:onClick="acceptOk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_cancel"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
