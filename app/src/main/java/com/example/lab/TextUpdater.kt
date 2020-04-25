@@ -1,4 +1,4 @@
-package com.example.lab1
+package com.example.lab
 
 interface TextUpdater {
     fun passText(input_text: String)

@@ -1,4 +1,4 @@
-package com.example.lab1
+package com.example.lab
 
 import android.graphics.Typeface
 import android.os.Bundle

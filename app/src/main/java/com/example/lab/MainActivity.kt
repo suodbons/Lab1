@@ -1,4 +1,4 @@
-package com.example.lab1
+package com.example.lab
 
 import android.os.Bundle
 import android.widget.RadioButton
@@ -34,15 +34,27 @@ class MainActivity : AppCompatActivity(), TextUpdater{
             if(outputFragment.arguments?.getString("input_radio_id") != radio.text.toString()){
                 outputFragment.arguments?.putString("input_radio_id", radio.text.toString())
                 supportFragmentManager.beginTransaction().detach(outputFragment).attach(outputFragment).commit()
+                addToDB(radio.text.toString(), text)
             }
             else{
-                message("Nothing changed")
+                val lastChoice = DatabaseHelper.getInstance(this).getLastChoice()
+                if(lastChoice.text != text){
+                    addToDB(radio.text.toString(), text)
+                }
+                else{
+                    message("Nothing changed")
+                }
             }
         }
         else{
             outputFragment = FragmentOutput.newInstance(text, radio.text.toString())
             supportFragmentManager.beginTransaction().replace(R.id.fragment_default_picture, outputFragment).commit()
+            addToDB(radio.text.toString(), text)
         }
+    }
+    fun addToDB(font: String, text: String){
+        DatabaseHelper.getInstance(this).addChoice(font, text)
+        message("Data saved")
     }
     fun clear(){
         supportFragmentManager.beginTransaction().replace(R.id.fragment_default_picture, FragmentDefaultPicture()).commit()

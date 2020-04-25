@@ -1,5 +1,6 @@
-package com.example.lab1
+package com.example.lab
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -56,12 +57,24 @@ class FragmentInput : Fragment() {
                 }
                 if(fonts.checkedRadioButtonId != -1){
                     fonts.clearCheck()
+                    (activity as MainActivity).clear()
                 }
             }
             else{
                 (activity as MainActivity).message("Nothing to cancel")
             }
-            (activity as MainActivity).clear()
+        }
+
+        rootView.button_openDB.setOnClickListener{
+            val checkEmpty = DatabaseHelper.getInstance((activity as MainActivity)).getAllChoices()
+            if(checkEmpty.size > 0){
+                val intent = Intent((activity as MainActivity), DBShowerActivity::class.java)
+                startActivity(intent)
+
+            }
+            else{
+                (activity as MainActivity).message("DB is empty")
+            }
         }
         return rootView
     }
