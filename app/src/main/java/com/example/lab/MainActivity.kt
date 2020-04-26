@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), TextUpdater{
             }
             else{
                 val lastChoice = DatabaseHelper.getInstance(this).getLastChoice()
-                if(lastChoice.text != text){
+                if(lastChoice == null || lastChoice.text != text){
                     addToDB(radio.text.toString(), text)
                 }
                 else{

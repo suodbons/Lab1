@@ -47,15 +47,18 @@ class DatabaseHelper(context: Context?, name: String?, factory: SQLiteDatabase.C
         }
     }
     @SuppressLint("Recycle")
-    fun getLastChoice() : Choice{
+    fun getLastChoice() : Choice? {
         val cursor : Cursor = this.writableDatabase.query("CHOICES_TABLE", arrayOf("\"id\"", "\"date\"", "\"font\"", "\"text\""), null, null, null, null, null)
-        cursor.moveToLast()
-        val choice = Choice()
-        choice.id = cursor.getInt(0)
-        choice.date = cursor.getString(1)
-        choice.font = cursor.getString(2)
-        choice.text = cursor.getString(3)
-        return choice
+        if (cursor.count > 0) {
+            cursor.moveToLast()
+            val choice = Choice()
+            choice.id = cursor.getInt(0)
+            choice.date = cursor.getString(1)
+            choice.font = cursor.getString(2)
+            choice.text = cursor.getString(3)
+            return choice
+        }
+        return null
     }
     @SuppressLint("Recycle")
     fun getAllChoices() : ArrayList<Choice>{
